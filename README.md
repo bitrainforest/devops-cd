@@ -1,2 +1,1 @@
-# jenkinslib
-Jenkins share library
+# devops-cd
