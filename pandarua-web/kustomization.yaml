@@ -4,4 +4,4 @@ resources:
 - deployment.yaml
 images:
 - name: ghcr.io/bitrainforest/pandarua-web
-  newTag: market-29
+  newTag: market-30
