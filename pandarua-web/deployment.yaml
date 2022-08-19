@@ -2,28 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: acceptance
-  name: $PROJECT_NAME
+  name: pandarua-web
   labels:
-    app: $PROJECT_NAME
+    app: pandarua-web
 spec:
   replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: $PROJECT_NAME
+      app: pandarua-web
   template:
     metadata:
       namespace: acceptance
-      name: $PROJECT_NAME
+      name: pandarua-web
       labels:
-        app: $PROJECT_NAME
+        app: pandarua-web
     spec:
       containers:
-      - name: $PROJECT_NAME
+      - name: pandarua-web
         imagePullPolicy: Always
         image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER
         ports:
-        - name: $PROJECT_NAME
+        - name: pandarua-web
           containerPort: 3000
           protocol: TCP
       imagePullSecrets:
