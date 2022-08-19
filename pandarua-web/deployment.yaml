@@ -21,7 +21,7 @@ spec:
       containers:
       - name: pandarua-web
         imagePullPolicy: Always
-        image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:$BRANCH_NAME-$BUILD_NUMBER
+        image: ghcr.io/bitrainforest/pandarua-web:market-44
         ports:
         - name: pandarua-web
           containerPort: 3000
