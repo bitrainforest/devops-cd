@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 images:
+- name: cr.pandarua.dev/bitrainforest/pandarua-web
+  newTag: market-32
 - name: ghcr.io/bitrainforest/pandarua-web
   newTag: market-30
