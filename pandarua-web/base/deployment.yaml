@@ -21,10 +21,10 @@ spec:
       containers:
       - name: pandarua-web
         imagePullPolicy: Always
-        image: ghcr.io/bitrainforest/pandarua-web:market-44
+        image: cr.pandarua.dev/bitrainforest/pandarua-web:docker-dev-33
         ports:
         - name: pandarua-web
           containerPort: 3000
           protocol: TCP
       imagePullSecrets:
-      - name: githyub-packages-secret
+      - name: harbor-packages-secret
