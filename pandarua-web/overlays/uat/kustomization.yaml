@@ -1,1 +1,9 @@
+---
+namespace: uat
+namePrefix: uat
+resources:
+- ../../base
+- namespace.yaml
+patchesStrategicMerge:
+- deployment.yaml
 
