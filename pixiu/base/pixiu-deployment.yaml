@@ -1,1 +1,51 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: lily-calibnet
+  name: pixiu-backend
+  labels:
+    app: pixiu-backend
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: pixiu-backend
+  template:
+    metadata:
+      namespace: lily-calibnet
+      name: pixiu-backend
+      labels:
+        app: pixiu-backend
+    spec:
+      containers:
+      - name: pixiu-backend
+        imagePullPolicy: Always
+        image: cr.pandarua.dev/bitrainforest/pixiu:main-1
+        ports:
+        - name: pixiu-backend
+          containerPort: 8088
+          protocol: TCP
+        env:
+        - name: "redis"
+          value: '{"addr":"10.233.44.236:6379", "db":0, "password":"JFnXcTasWnafLZ7c","userName":"default"}'
+        - name: "IPFS_GATEWAY"
+          value: "https://proof-parameters.s3.cn-south-1.jdcloud-oss.com/ipfs/"
+        - name: "FULLNODE_TOKEN"
+          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6InBhbmRhcnVhIiwiTGV2ZWwiOiI3In0.Aa_FzMEaitFfpR2_WRQ1Z7KmpS0A5_KYPVu7uAL7SWk"
+        - name: "FULLNODE_API_INFO"
+          value: "https://rpc-calibnet-filecoin.pandarua.dev"
+        - name: "GIN_MODE"
+          value: "debug"
+        - name: "POSTGRES"
+          value: "postgres://postgres:password@10.126.145.217:5432/lily"
+        volumeMounts:
+          - name: timezone
+            mountPath: /etc/localtime
+            readOnly: true
+      volumes:
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+      imagePullSecrets:
+      - name: harbor-packages-secret  
