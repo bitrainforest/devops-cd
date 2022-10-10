@@ -1,0 +1,29 @@
+apiVersion: apisix.apache.org/v2beta3
+kind: ApisixRoute
+metadata:
+  name: pixiu-backend-route
+  namespace: lily-mainnet
+spec:
+  http:
+  - backends:
+    - serviceName: pixiu-backend
+      servicePort: 8088
+    match:
+      hosts:
+      - pixiu-mainnet.filmeta.pro
+      paths:
+      - /*
+    name: pixiu-backend
+    websocket: true
+---
+apiVersion: apisix.apache.org/v2beta3
+kind: ApisixTls
+metadata:
+  name: pixiu-backend-mainnet-tls-route
+  namespace: lily-mainnet
+spec:
+  hosts:
+  - pixiu-mainnet.filmeta.pro
+  secret:
+    name: pixiu-mainnet.filmeta.pro.ca
+    namespace: lily-mainnet
