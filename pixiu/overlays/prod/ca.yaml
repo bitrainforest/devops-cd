@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pixiu-backend-mainnet-route-ca
+  namespace: lily-mainnet
+spec:
+  dnsNames:
+  - pixiu-mainnet.filmeta.pro
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-dns01
+  secretName: pixiu-mainnet.filmeta.pro.ca
